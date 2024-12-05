@@ -96,4 +96,38 @@ public class Joueur {
     public TableauDeJeu getPartie() {
         return partie;
     }
+
+    /**
+     * Converts a column character (A-j) to its corresponding index (0-9).
+     * <p>
+     * This method maps the letters 'A' to 'j' to the respective index values 0
+     * to 9. It is case-insensitive, meaning both lowercase and uppercase
+     * letters are accepted. If an invalid column is provided, the method
+     * returns -1.
+     * </p>
+     *
+     * @param column The column character to be converted (A-j,
+     * case-insensitive).
+     * @return The corresponding index of the column (0-9), or -1 if the column
+     * is invalid.
+     */
+    public int convertirPosX(char column) {
+        int posXint;
+        // Convert the column to uppercase to handle both cases
+        posXint = switch (Character.toUpperCase(column)) {
+            case 'A' -> 0;
+            case 'B' -> 1;
+            case 'C' -> 2;
+            case 'D' -> 3;
+            case 'E' -> 4;
+            case 'F' -> 5;
+            case 'G' -> 6;
+            case 'H' -> 7;
+            case 'I' -> 8;
+            case 'J' -> 9;
+            default -> -1;
+        }; 
+
+        return posXint;
+    }
 }

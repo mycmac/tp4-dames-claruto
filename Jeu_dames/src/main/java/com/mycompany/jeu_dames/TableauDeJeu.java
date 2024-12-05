@@ -8,15 +8,19 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Clara
+ * @author Clara, Larissa
  */
 public class TableauDeJeu {
     public Peon[][] carte;
     public ArrayList<Peon> peonNoir;
     public ArrayList<Peon> peonBlanc;
     
+    public static int taille = 10;
+    
     public TableauDeJeu() {
-        
+        ArrayList<Peon> peonNoir = new ArrayList();
+        ArrayList<Peon> peonBlanc = new ArrayList();
+        Peon carte[][] = new Peon[taille][taille];
     }
     
     public void creerTableau() {
@@ -37,6 +41,14 @@ public class TableauDeJeu {
     }
     
     public void verifierFinPartie() {
+        
+    }
+    
+    public void removePeon(int x, int y){
+        
+    }
+    
+    public void cheminEstLibre(int x, int y, int newX, int newY){
         
     }
 

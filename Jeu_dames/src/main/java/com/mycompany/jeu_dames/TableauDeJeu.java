@@ -19,9 +19,9 @@ public class TableauDeJeu {
     public static int nbPeon = 20;
     
     public TableauDeJeu() {
-        ArrayList<Peon> peonNoir = new ArrayList();
-        ArrayList<Peon> peonBlanc = new ArrayList();
-        Peon carte[][] = new Peon[taille][taille];
+        this.peonNoir = new ArrayList<>();
+        this.peonBlanc = new ArrayList<>();
+        this.carte = new Peon[taille][taille];
     }
     
     /**
@@ -33,7 +33,7 @@ public class TableauDeJeu {
         
         //Creation et placement des peons noires
         for (int i = 0; i < 4; i++){
-            for (int j = 0; j<= taille; j++){
+            for (int j = 0; j < taille; j++){
                 if ((i + j) % 2 != 0) { // Seulement dans les cases noires
                     Peon noir = new Peon(i, j, false, this);
                     peonNoir.add(noir);
@@ -118,5 +118,10 @@ public class TableauDeJeu {
     public void setPeonBlanc(ArrayList<Peon> peonBlanc) {
         this.peonBlanc = peonBlanc;
     }
+    
+    public void afficheTableau(){
+        
+    }
+    
     
 }

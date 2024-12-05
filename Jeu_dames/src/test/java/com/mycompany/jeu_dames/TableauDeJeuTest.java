@@ -45,9 +45,10 @@ public class TableauDeJeuTest {
         System.out.println("creerTableau");
         TableauDeJeu instance = new TableauDeJeu();
         instance.creerTableau();
-        // TODO review the generated test code and remove the default call to fail.
         
+        //Test si la position souhaitée a un objet du type Peon
         assertTrue( (instance.getCarte()[0][1]) instanceof Peon);
+        assertFalse( (instance.getCarte()[0][0]) != null);
     }
 
     /**

@@ -172,7 +172,25 @@ public class Joueur {
         } while (peonTrouve == null);
 
         System.out.println("Pion sélectionné : " + peonTrouve);
+        
+        int nouvelleColonne = 0;
+        int nouvelleLigne = 0;
+        
+        // Loop until a valid peon is found
+        do {
+            try {
+                int[] Cordonnees = getCordonneesValides();
+                nouvelleColonne = Cordonnees[0];
+                nouvelleLigne = Cordonnees[1];
 
+                
+            } catch (Exception e) {
+                System.out.println("Entrée invalide. Veuillez réessayer.");
+                scanner.nextLine(); // Clear buffer
+            }
+        } while (estCoordonneeVide(nouvelleLigne, nouvelleColonne, mesPeons, adversairesPeons));
+        
+        peonTrouve.deplacer(nouvelleColonne, nouvelleLigne);
     }
 
     /**

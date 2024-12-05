@@ -19,9 +19,9 @@ public class TableauDeJeu {
     public static int nbPeon = 20;
     
     public TableauDeJeu() {
-        ArrayList<Peon> peonNoir = new ArrayList();
-        ArrayList<Peon> peonBlanc = new ArrayList();
-        Peon carte[][] = new Peon[taille][taille];
+        this.peonNoir = new ArrayList<Peon>();
+        this.peonBlanc = new ArrayList<Peon>();
+        this.carte = new Peon[taille][taille];
     }
     
     /**
@@ -105,5 +105,10 @@ public class TableauDeJeu {
     public void setPeonBlanc(ArrayList<Peon> peonBlanc) {
         this.peonBlanc = peonBlanc;
     }
+    
+    public void afficheTableau(){
+        
+    }
+    
     
 }

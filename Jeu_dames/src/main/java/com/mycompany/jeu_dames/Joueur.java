@@ -24,4 +24,17 @@ public class Joueur {
     public void tourDeJeu() {
         
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public boolean isCouleur() {
+        return couleur;
+    }
+
+    public TableauDeJeu getPartie() {
+        return partie;
+    }
+    
 }

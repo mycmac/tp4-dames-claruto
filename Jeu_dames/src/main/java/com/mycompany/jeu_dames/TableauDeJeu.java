@@ -39,5 +39,29 @@ public class TableauDeJeu {
     public void verifierFinPartie() {
         
     }
+
+    public Peon[][] getCarte() {
+        return carte;
+    }
+
+    public void setCarte(Peon[][] carte) {
+        this.carte = carte;
+    }
+
+    public ArrayList<Peon> getPeonNoir() {
+        return peonNoir;
+    }
+
+    public void setPeonNoir(ArrayList<Peon> peonNoir) {
+        this.peonNoir = peonNoir;
+    }
+
+    public ArrayList<Peon> getPeonBlanc() {
+        return peonBlanc;
+    }
+
+    public void setPeonBlanc(ArrayList<Peon> peonBlanc) {
+        this.peonBlanc = peonBlanc;
+    }
     
 }

@@ -12,12 +12,66 @@ public class Peon {
     protected int x;
     protected int y;
     protected boolean couleur;
+    protected TableauDeJeu partie;
     
-    public Peon (int x, int y, boolean couleur) {
+    public Peon (int x, int y, boolean couleur, TableauDeJeu partie) {
         this.x = x;
         this.y = y;
         this.couleur = couleur;
-               
+        this.partie = partie;
+    }
+    
+    public boolean verifieVoisin(int newX, int newY) {
+        int middleX = (this.x + newX) / 2;
+        int middleY = (this.y + newY) / 2;
+        Peon peonVoisin = partie.getCarte()[middleX][middleY];
+
+        return peonVoisin != null && peonVoisin.couleur != this.couleur;
+    } 
+    
+    public boolean verifieDeplacement(int newX, int newY) {
+        int deltaX = Math.abs(newX - this.x);
+        int deltaY = newY - this.y;
+
+        // Peon peuvent se deplacer en diagonel et avant
+        if (this.couleur) { // Noir
+            return deltaX == 1 && deltaY == 1;
+        } else { // Blanc
+            return deltaX == 1 && deltaY == -1;
+        }
+    }
+   
+    public boolean deplacer(int newX, int newY) {
+        // Verifie si la position est valide et se deplace
+        if (verifieDeplacement(newX, newY)) {
+            this.x = newX;
+            this.y = newY;
+            return true;
+        }
+        return false;
+    }
+    
+    
+    public boolean prise(int newX, int newY) {
+        if (verifieVoisin(newX, newY)) {
+            int middleX = (this.x + newX) / 2;
+            int middleY = (this.y + newY) / 2;
+
+            // Effacer le peon enemie
+            partie.removePeon(middleX, middleY);
+
+            // deplace le peon courrant
+            return deplacer(newX, newY);
+        }
+        return false;
+    }
+    
+    public boolean estPromu() {
+        // Est arrivee à la fin du tableau
+        if (this.couleur && this.y == 9 || !this.couleur && this.y == 0) {
+            return true;
+        }
+        return false;
     }
     
     public int getX() {
@@ -44,10 +98,4 @@ public class Peon {
         this.couleur = couleur;
     }
     
-    public void deplacer() { //TODO
-    }
-    
-    public void prise() { //TODO
-        
-    }
 }

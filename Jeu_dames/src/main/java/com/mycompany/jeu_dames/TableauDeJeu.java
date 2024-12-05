@@ -16,6 +16,7 @@ public class TableauDeJeu {
     public ArrayList<Peon> peonBlanc;
     
     public static int taille = 10;
+    public static int nbPeon = 20;
     
     public TableauDeJeu() {
         ArrayList<Peon> peonNoir = new ArrayList();
@@ -23,9 +24,31 @@ public class TableauDeJeu {
         Peon carte[][] = new Peon[taille][taille];
     }
     
+    /**
+     * Initialisation du plateau de jeu
+     */
     public void creerTableau() {
+        //Creation des peons
+        //Couleur: true pour noir, false pour blanc
+        for (int i = 0; i <= nbPeon; i++){
+            for (int j = 0; j<= taille; j++){
+                
+                Peon noir = new Peon(0, 0, false);
+                Peon blanc  = new Peon(0, 0, true);
+                peonNoir.add(noir);
+                peonBlanc.add(blanc);
+            }
+        }
         
+        
+        
+        //peonsNoires dans les cases paires
+        //peonsBlanches dans les cases impaires
+                
+       
     }
+    
+    //verificar se position de deplacement existe
     
     public void tourDeJeu() {
         
@@ -48,7 +71,7 @@ public class TableauDeJeu {
         
     }
     
-    public void cheminEstLibre(int x, int y, int newX, int newY){
+    public boolean cheminEstLibre(int x, int y, int newX, int newY){
         
     }
 

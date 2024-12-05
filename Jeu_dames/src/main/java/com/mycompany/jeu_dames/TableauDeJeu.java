@@ -7,11 +7,20 @@ package com.mycompany.jeu_dames;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe TableauDeJeu
  * @author Clara, Larissa
  */
 public class TableauDeJeu {
+    /**
+     * Stockage des positions des peons dans le jeu.
+     */
     public Peon[][] carte;
+    
+    /**
+     * Carte pour affichage à l'écran. N = peons noir, B = peons blancs.
+     */
+    public char[][] carteInterface;
+    
     public ArrayList<Peon> peonNoir;
     public ArrayList<Peon> peonBlanc;
     
@@ -22,10 +31,12 @@ public class TableauDeJeu {
         this.peonNoir = new ArrayList<>();
         this.peonBlanc = new ArrayList<>();
         this.carte = new Peon[taille][taille];
+        this.carteInterface = new char[taille][taille];
+        
     }
     
     /**
-     * Initialisation du plateau de jeu
+     * Initialisation du plateau de jeu.
      */
     public void creerTableau() {
         //Creation des peons
@@ -38,8 +49,9 @@ public class TableauDeJeu {
                     Peon noir = new Peon(i, j, false, this);
                     peonNoir.add(noir);
                     carte[i][j] = noir;
+                    carteInterface[i][j] = 'N';
                 }
- 
+            carteInterface[i][j] = '0';
             }
         }
         
@@ -50,10 +62,13 @@ public class TableauDeJeu {
                     Peon blanc = new Peon(i, j, true, this);
                     peonBlanc.add(blanc);
                     carte[i][j] = blanc;
+                    carteInterface[i][j] = 'B';
                 }
+                carteInterface[i][j] = '0';
             }
         }
     }
+    //column letters, lignes a zero
     
     //verificar se position de deplacement existe
     

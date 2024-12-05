@@ -48,8 +48,8 @@ public class TableauDeJeu {
         
     }
     
-    public void cheminEstLibre(int x, int y, int newX, int newY){
-        
+    public boolean cheminEstLibre(int x, int y, int newX, int newY){
+        return false;
     }
 
     public Peon[][] getCarte() {

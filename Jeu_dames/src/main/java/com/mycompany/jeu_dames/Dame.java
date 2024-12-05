@@ -19,7 +19,7 @@ public class Dame extends Peon {
      * diagonale, sans limite de distance.
      */
     @Override
-    public boolean verifieDeplacement(int newX, int newY, boolean aPris) {
+    public boolean verifieDeplacement(int newX, int newY) {
         int deltaX = Math.abs(newX - this.x);
         int deltaY = Math.abs(newY - this.y);
 
@@ -38,7 +38,7 @@ public class Dame extends Peon {
         
         if (verifieVoisin(middleX, middleY)) {
             partie.removePeon(middleX, middleY);
-            return deplacer(newX, newY, true);
+            return deplacer(newX, newY);
         }
         return false;
     }

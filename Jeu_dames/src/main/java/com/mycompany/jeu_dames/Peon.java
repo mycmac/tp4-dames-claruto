@@ -29,36 +29,50 @@ public class Peon {
         return peonVoisin != null && peonVoisin.couleur != this.couleur;
     } 
     
-    public boolean verifieDeplacement(int newX, int newY, boolean aPris) {
+    public boolean verifieDeplacement(int newX, int newY) {
         int deltaX = Math.abs(newX - this.x);
         int deltaY = newY - this.y;
 
         // Peon peuvent se deplacer en diagonel et avant
-        if (!aPris) {
-            if (this.couleur) { // Noir = true
-                return deltaX == 1 && deltaY == 1;
-            } else { // Blanc = false
-                return deltaX == 1 && deltaY == -1;
-            }
+        if (this.couleur) { // Noir = true
+            return deltaX == 1 && deltaY == 1;
+        } else { // Blanc = false
+            return deltaX == 1 && deltaY == -1;
+        } 
+    }
+    
+    public boolean verifieDeplacementApresPrise(int newX, int newY) {
+        int deltaX = Math.abs(newX - this.x);
+        int deltaY = newY - this.y;
+
+        // Peon peuvent se deplacer en diagonel et avant
+        if (this.couleur) { // Noir = true
+            return deltaX == 2 && deltaY == 2;
+        } else { // Blanc = false
+            return deltaX == 2 && deltaY == -2;
         }
-        else {
-            if (this.couleur) { // Noir = true
-                return deltaX == 2 && deltaY == 2;
-            } else { // Blanc = false
-                return deltaX == 2 && deltaY == -2;
-            }
-        }
+        
     }
    
-    public boolean deplacer(int newX, int newY, boolean aPris) {
+    public boolean deplacer(int newX, int newY) {
         // Verifie si la position est valide et se deplace
-        if (verifieDeplacement(newX, newY, aPris)) {
+        if (verifieDeplacement(newX, newY)) {
             this.x = newX;
             this.y = newY;
             return true;
         }
         return false;
-    }       
+    }     
+    
+    public boolean deplacerApresPrise(int newX, int newY) {
+        // Verifie si la position est valide et se deplace
+        if (verifieDeplacementApresPrise(newX, newY)) {
+            this.x = newX;
+            this.y = newY;
+            return true;
+        }
+        return false;
+    }    
     
     public void deplacerTest(int newX, int newY) {
         this.x = newX;
@@ -74,7 +88,7 @@ public class Peon {
             partie.removePeon(middleX, middleY);
 
             // deplace le peon courrant
-            return deplacer(newX, newY, true);
+            return deplacerApresPrise(newX, newY);
         }
         return false;
     }

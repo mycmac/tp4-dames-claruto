@@ -30,22 +30,29 @@ public class TableauDeJeu {
     public void creerTableau() {
         //Creation des peons
         //Couleur: true pour noir, false pour blanc
-        for (int i = 0; i <= nbPeon; i++){
+        
+        //Creation et placement des peons noires
+        for (int i = 0; i < 4; i++){
             for (int j = 0; j<= taille; j++){
-                
-                Peon noir = new Peon(0, 0, false);
-                Peon blanc  = new Peon(0, 0, true);
-                peonNoir.add(noir);
-                peonBlanc.add(blanc);
+                if ((i + j) % 2 != 0) { // Seulement dans les cases noires
+                    Peon noir = new Peon(i, j, false, this);
+                    peonNoir.add(noir);
+                    carte[i][j] = noir;
+                }
+ 
             }
         }
         
-        
-        
-        //peonsNoires dans les cases paires
-        //peonsBlanches dans les cases impaires
-                
-       
+        //Creation et placement des peons blanches
+        for (int i = 6; i < taille; i++) {
+            for (int j = 0; j < taille; j++) {
+                if ((i + j) % 2 != 0) { // Seulement dans les cases noires
+                    Peon blanc = new Peon(i, j, true, this);
+                    peonBlanc.add(blanc);
+                    carte[i][j] = blanc;
+                }
+            }
+        }
     }
     
     //verificar se position de deplacement existe
@@ -72,7 +79,7 @@ public class TableauDeJeu {
     }
     
     public boolean cheminEstLibre(int x, int y, int newX, int newY){
-        
+      return true;  
     }
 
     public Peon[][] getCarte() {

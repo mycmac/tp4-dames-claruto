@@ -82,7 +82,6 @@ public class TableauDeJeu {
     
     public void tourDeJeu() {
         System.out.println("Choississez le peon que vous voulez changer de position: ");
-        
     
     }
     
@@ -102,8 +101,44 @@ public class TableauDeJeu {
         
     }
     
-    public boolean cheminEstLibre(int x, int y, int newX, int newY){
-      return true;  
+    /**
+     * Vérifie si entre deux points du tableau il n'y a pas de peons à la diagonale.
+     * @param x: position en x du tableau
+     * @param y: position en y du tableau
+     * @param x1: une autre position en x du tableau
+     * @param y1: une autre position en y du tableau
+     * @return true s'il existe au moins une pièce et false si non.
+     * @throws java.lang.Exception
+     */
+    public boolean cheminEstLibre(int x, int y, int x1, int y1) throws Exception{
+        //Verifie si les points sont dans le tableau de jeu
+        if(x1 >= taille || y1 >= taille || x >= taille || y >= taille ||
+           x1 < 0 || y1 < 0 || x < 0 || y < 0){
+            throw new Exception("Invalid number. Tried to access unbounded values in the matrix.");
+        } 
+
+        //Verifie si les points sont dans la meme diagonal
+        if (Math.abs(x1 - x) != Math.abs(y1 - y)) { 
+          throw new IllegalArgumentException("The positions are not in the same diagonal.");
+        } else{
+            // Determina o incremento para as coordenadas
+            int incrementX = (x1 > x) ? 1 : -1;
+            int incrementY = (y1 > y) ? 1 : -1;
+
+            // Percorre a diagonal, excluindo os pontos inicial e final
+            int atualX = x + incrementX;
+            int atualY = y + incrementY;
+
+            while (atualX != x1 && atualY != y1) {
+                if (carte[atualX][atualY] instanceof Peon) {
+                    return true; // il existe un peon
+                }
+                atualX += incrementX;
+                atualY += incrementY;
+            }
+
+            return false; // aucun peon au chemin
+        }
     }
 
     public Peon[][] getCarte() {

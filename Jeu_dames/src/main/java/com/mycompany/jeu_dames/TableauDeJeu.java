@@ -88,7 +88,13 @@ public class TableauDeJeu {
     }
     
     public void removePeon(int x, int y){
-        
+        Peon peonRemove = carte[x][y];
+        if (peonRemove.isCouleur()) { // Noir
+            peonNoir.remove(peonRemove);
+        } else { // Blanc
+            peonBlanc.remove(peonRemove);
+        }
+        carte[x][y] = null;
     }
     
     public boolean cheminEstLibre(int x, int y, int newX, int newY){

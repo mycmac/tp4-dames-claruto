@@ -29,21 +29,30 @@ public class Peon {
         return peonVoisin != null && peonVoisin.couleur != this.couleur;
     } 
     
-    public boolean verifieDeplacement(int newX, int newY) {
+    public boolean verifieDeplacement(int newX, int newY, boolean aPris) {
         int deltaX = Math.abs(newX - this.x);
         int deltaY = newY - this.y;
 
         // Peon peuvent se deplacer en diagonel et avant
-        if (this.couleur) { // Noir = true
-            return deltaX == 1 && deltaY == 1;
-        } else { // Blanc = false
-            return deltaX == 1 && deltaY == -1;
+        if (!aPris) {
+            if (this.couleur) { // Noir = true
+                return deltaX == 1 && deltaY == 1;
+            } else { // Blanc = false
+                return deltaX == 1 && deltaY == -1;
+            }
+        }
+        else {
+            if (this.couleur) { // Noir = true
+                return deltaX == 2 && deltaY == 2;
+            } else { // Blanc = false
+                return deltaX == 2 && deltaY == -2;
+            }
         }
     }
    
-    public boolean deplacer(int newX, int newY) {
+    public boolean deplacer(int newX, int newY, boolean aPris) {
         // Verifie si la position est valide et se deplace
-        if (verifieDeplacement(newX, newY)) {
+        if (verifieDeplacement(newX, newY, aPris)) {
             this.x = newX;
             this.y = newY;
             return true;
@@ -51,6 +60,10 @@ public class Peon {
         return false;
     }       
     
+    public void deplacerTest(int newX, int newY) {
+        this.x = newX;
+        this.y = newY;
+    }
     
     public boolean prise(int newX, int newY) {
         if (verifieVoisin(newX, newY)) {
@@ -61,7 +74,7 @@ public class Peon {
             partie.removePeon(middleX, middleY);
 
             // deplace le peon courrant
-            return deplacer(newX, newY);
+            return deplacer(newX, newY, true);
         }
         return false;
     }

@@ -24,7 +24,7 @@ public class Peon {
     public boolean verifieVoisin(int newX, int newY) {
         int middleX = (this.x + newX) / 2;
         int middleY = (this.y + newY) / 2;
-        Peon peonVoisin = partie.getCarte()[middleX][middleY];
+        Peon peonVoisin = partie.getPeon(middleX, middleY);
 
         return peonVoisin != null && peonVoisin.couleur != this.couleur;
     } 
@@ -34,9 +34,9 @@ public class Peon {
         int deltaY = newY - this.y;
 
         // Peon peuvent se deplacer en diagonel et avant
-        if (this.couleur) { // Noir
+        if (this.couleur) { // Noir = true
             return deltaX == 1 && deltaY == 1;
-        } else { // Blanc
+        } else { // Blanc = false
             return deltaX == 1 && deltaY == -1;
         }
     }
@@ -49,7 +49,7 @@ public class Peon {
             return true;
         }
         return false;
-    }
+    }       
     
     
     public boolean prise(int newX, int newY) {

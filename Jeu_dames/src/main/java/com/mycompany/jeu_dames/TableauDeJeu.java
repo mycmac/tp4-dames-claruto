@@ -50,8 +50,15 @@ public class TableauDeJeu {
                     peonNoir.add(noir);
                     carte[i][j] = noir;
                     carteInterface[i][j] = 'N';
+                } else{
+                    carteInterface[i][j] = '0';
                 }
-            carteInterface[i][j] = '0';
+            }
+        }
+        
+        for (int i = 4; i < 6; i++){
+            for (int j=0; j < taille; j++){
+                carteInterface[i][j] = '0';
             }
         }
         
@@ -63,8 +70,9 @@ public class TableauDeJeu {
                     peonBlanc.add(blanc);
                     carte[i][j] = blanc;
                     carteInterface[i][j] = 'B';
+                } else{
+                    carteInterface[i][j] = '0';
                 }
-                carteInterface[i][j] = '0';
             }
         }
     }
@@ -124,7 +132,7 @@ public class TableauDeJeu {
     public void afficheTableau(){
         for (int i = 0; i < taille; i++) {
             for (int j = 0; j < taille; j++) {
-                System.out.println(this.carteInterface[i][j] + "  ");
+                System.out.print(this.carteInterface[i][j] + "  ");
         }
             System.out.println();
         }

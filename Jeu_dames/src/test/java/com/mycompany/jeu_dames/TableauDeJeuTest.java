@@ -212,4 +212,16 @@ public class TableauDeJeuTest {
         fail("The test case is a prototype.");
     }
     
+    /**
+     * Test of afficheTableau method, of class TableauDeJeu.
+     */
+    @Test
+    public void testAfficheTableau() {
+        System.out.println("afficheTableau");
+        TableauDeJeu instance = new TableauDeJeu();
+        instance.creerTableau();
+        instance.afficheTableau();
+
+    }
+    
 }

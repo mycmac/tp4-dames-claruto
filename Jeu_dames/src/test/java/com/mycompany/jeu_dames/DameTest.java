@@ -16,56 +16,41 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Clara
  */
 public class DameTest {
-    
-    public DameTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
+
+    private TableauDeJeu partie;
+    private Dame dame;
+
     @BeforeEach
     public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
+        // Initialisation d'un tableau de jeu fictif
+        partie = new TableauDeJeu();
+
+        // Création d'une Dame
+        dame = new Dame(4, 4, true, partie);
+        partie.ajouterPeon(dame);
     }
 
-    /**
-     * Test of verifieDeplacement method, of class Dame.
-     */
     @Test
-    public void testVerifieDeplacement() {
-        System.out.println("verifieDeplacement");
-        int newX = 0;
-        int newY = 0;
-        Dame instance = null;
-        boolean expResult = false;
-        boolean result = instance.verifieDeplacement(newX, newY);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of prise method, of class Dame.
-     */
-    @Test
-    public void testPrise() {
-        System.out.println("prise");
-        int newX = 0;
-        int newY = 0;
-        Dame instance = null;
-        boolean expResult = false;
-        boolean result = instance.prise(newX, newY);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testDeplacerValide() {
+        assertTrue(dame.deplacer(7, 7), "La Dame devrait pouvoir se déplacer sur une longue diagonale");
+        assertEquals(7, dame.x);
+        assertEquals(7, dame.y);
     }
     
+    @Test
+    public void testDeplacerInvalide() {
+        assertFalse(dame.deplacer(6, 5), "La Dame ne peut pas se déplacer hors des diagonales");
+        assertEquals(4, dame.x);
+        assertEquals(4, dame.y);
+    }
+
+    @Test
+    public void testPriseValide() {
+        Peon cible = new Peon(6, 6, false, partie);
+        partie.ajouterPeon(cible);
+        assertTrue(dame.prise(8, 8), "La Dame devrait capturer un pion sur sa trajectoire");
+        assertNull(partie.getPeon(6, 6), "Le pion capturé devrait être supprimé du tableau");
+        assertEquals(8, dame.x);
+        assertEquals(8, dame.y);
+    }
 }

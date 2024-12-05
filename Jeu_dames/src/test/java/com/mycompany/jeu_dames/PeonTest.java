@@ -58,7 +58,7 @@ public class PeonTest {
     
     @Test
     public void testPromotion() {
-        peonNoir.deplacer(5, 9);
+        peonNoir.deplacerTest(5, 9);
         assertTrue(peonNoir.estPromu(), "Le pion noir devrait être promu en Dame");
     }
    

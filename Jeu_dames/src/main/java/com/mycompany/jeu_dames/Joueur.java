@@ -130,7 +130,7 @@ public class Joueur {
 
                 // Read the row
                 System.out.print("Entrez la ligne (0-9) : ");
-                 int ligne = scanner.nextInt();
+                int ligne = scanner.nextInt();
                 // Check the validity of the row
                 while (ligne < 0 || ligne > 9) {
                     System.out.print("Ligne invalide ! Entrez à nouveau la ligne (0-9) : ");
@@ -150,9 +150,41 @@ public class Joueur {
                 scanner.nextLine(); // Clear buffer
             }
         } while (peonTrouve == null);
-        
-        System.out.println("Pion sélectionné : " + peonTrouve);
 
+        System.out.println("Pion sélectionné : " + peonTrouve);
+    }
+
+    /**
+     * Checks whether a specified coordinate (row and column) is empty on the
+     * game board. This method iterates through the player's and opponent's
+     * peons to check if either occupies the given position.
+     *
+     * @param ligne The row index of the coordinate to check (0-9).
+     * @param colonne The column index of the coordinate to check (0-9).
+     * @param mesPeons The list of the player's peons.
+     * @param adversairesPeons The list of the opponent's peons.
+     *
+     * @return true if the specified coordinate is empty (not occupied by either
+     * the player's or the opponent's peon), false if the position is occupied
+     * by either the player's or the opponent's peon.
+     */
+    public boolean estCoordonneeVide(int ligne, int colonne, ArrayList<Peon> mesPeons, ArrayList<Peon> adversairesPeons) {
+        // Check the player's peons
+        for (Peon peon : mesPeons) {
+            if (peon.getX() == colonne && peon.getY() == ligne) {
+                return false; // The position is occupied by one of the player's peons
+            }
+        }
+
+        // Check the opponent's peons
+        for (Peon peon : adversairesPeons) {
+            if (peon.getX() == colonne && peon.getY() == ligne) {
+                return false; // The position is occupied by an opponent's peon
+            }
+        }
+
+        // If no peon occupies the position, it is empty
+        return true;
     }
 
     /**

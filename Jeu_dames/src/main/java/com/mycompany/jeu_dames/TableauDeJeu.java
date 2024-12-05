@@ -81,6 +81,7 @@ public class TableauDeJeu {
     //verificar se position de deplacement existe
     
     public void tourDeJeu() {
+        System.out.println("Choississez le peon que vous voulez changer de position: ");
         
     
     }
@@ -129,13 +130,28 @@ public class TableauDeJeu {
         this.peonBlanc = peonBlanc;
     }
     
+    /**
+     * Affiche le tableau de jeu avec les colonnes identifiés avec des chiffres et
+     * des lignes correspondant à des lettres.
+     */
+    
     public void afficheTableau(){
+        
+        System.out.print("     "); // Espace initial pour aligner avec les lettres
+        for (int col = 0; col < taille; col++) {
+            System.out.print(col + "  "); // Nombre de la colonne
+        }
+        System.out.println();
+    
         for (int i = 0; i < taille; i++) {
+            System.out.print((char) ('A' + i) + "    "); // Lettres de l'alphabet
+            
             for (int j = 0; j < taille; j++) {
                 System.out.print(this.carteInterface[i][j] + "  ");
         }
             System.out.println();
         }
+
     }
-   
+ 
 }

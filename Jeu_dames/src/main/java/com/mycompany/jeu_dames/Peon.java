@@ -12,12 +12,13 @@ public class Peon {
     protected int x;
     protected int y;
     protected boolean couleur;
+    protected TableauDeJeu partie;
     
-    public Peon (int x, int y, boolean couleur) {
+    public Peon (int x, int y, boolean couleur, TableauDeJeu partie) {
         this.x = x;
         this.y = y;
         this.couleur = couleur;
-               
+        this.partie = partie;
     }
     
     public int getX() {
@@ -45,6 +46,7 @@ public class Peon {
     }
     
     public void deplacer() { //TODO
+        
     }
     
     public void prise() { //TODO

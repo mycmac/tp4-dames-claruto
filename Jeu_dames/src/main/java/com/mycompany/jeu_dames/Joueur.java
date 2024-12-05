@@ -98,6 +98,43 @@ public class Joueur {
         return partie;
     }
 
+    /**
+     * Prompts the user to enter valid coordinates (row and column) for their
+     * move. This function reads both the column (A-J) and row (0-9), ensuring
+     * that the inputs are valid.
+     *
+     * @return An array of two integers, where the first element is the column
+     * index (0-9) and the second element is the row index (0-9).
+     */
+    public int[] getCordonneesValides() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the column
+        System.out.print("Entrez la colonne (A-J) : ");
+        char colonneChar = scanner.next().charAt(0);
+
+        // Check the validity of the column
+        int colonne = convertirPosX(colonneChar);
+        while (colonne == -1) {
+            System.out.print("Colonne invalide ! Entrez à nouveau la colonne (A-J) : ");
+            colonneChar = scanner.next().charAt(0);
+            colonne = convertirPosX(colonneChar);
+        }
+
+        // Read the row
+        System.out.print("Entrez la ligne (0-9) : ");
+        int ligne = scanner.nextInt();
+
+        // Check the validity of the row
+        while (ligne < 0 || ligne > 9) {
+            System.out.print("Ligne invalide ! Entrez à nouveau la ligne (0-9) : ");
+            ligne = scanner.nextInt();
+        }
+
+        // Return the valid coordinates as an array
+        return new int[]{colonne, ligne};
+    }
+
     public void tourDeJeu() {
 
         Scanner scanner = new Scanner(System.in);
@@ -116,26 +153,9 @@ public class Joueur {
         // Loop until a valid peon is found
         do {
             try {
-                // Read the column
-                System.out.print("Entrez la colonne (A-J) : ");
-                char colonneChar = scanner.next().charAt(0);
-
-                // Check the validity of the column
-                int colonne = convertirPosX(colonneChar);
-                while (colonne == -1) {
-                    System.out.print("Colonne invalide ! Entrez à nouveau la colonne (A-J) : ");
-                    colonneChar = scanner.next().charAt(0);
-                    colonne = convertirPosX(colonneChar);
-                }
-
-                // Read the row
-                System.out.print("Entrez la ligne (0-9) : ");
-                int ligne = scanner.nextInt();
-                // Check the validity of the row
-                while (ligne < 0 || ligne > 9) {
-                    System.out.print("Ligne invalide ! Entrez à nouveau la ligne (0-9) : ");
-                    ligne = scanner.nextInt();
-                }
+                int[] Cordonnees = getCordonneesValides();
+                int colonne = Cordonnees[0];
+                int ligne = Cordonnees[1];
 
                 // Iterate over all peons in the 'myPeons' list
                 for (Peon peon : mesPeons) {
@@ -152,6 +172,7 @@ public class Joueur {
         } while (peonTrouve == null);
 
         System.out.println("Pion sélectionné : " + peonTrouve);
+
     }
 
     /**

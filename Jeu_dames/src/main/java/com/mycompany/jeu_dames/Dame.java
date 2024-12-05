@@ -9,8 +9,8 @@ package com.mycompany.jeu_dames;
  * @author Clara
  */
 public class Dame extends Peon {
-    public Dame(int x, int y, boolean couleur) {
-        super(x, y, couleur);
+    public Dame(int x, int y, boolean couleur, TableauDeJeu partie) {
+        super(x, y, couleur, partie);
     }
     
 }

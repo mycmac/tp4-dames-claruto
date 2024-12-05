@@ -1,6 +1,7 @@
 package com.mycompany.jeu_dames;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Represents a player in the game. A player has a name, a color, and is
@@ -43,7 +44,30 @@ public class Joueur {
     public Joueur(boolean couleur, TableauDeJeu partie, int numeroJoueur) {
         this.couleur = couleur;
         this.partie = partie;
-        //this.initializeNom(numeroJoueur);
+        this.initializeNom(numeroJoueur);
+    }
+
+    /**
+     * Initializes the player's name by prompting the user for input. This
+     * method ensures that the name is not empty.
+     *
+     * @param numeroJoueur The player's number, used to display the prompt.
+     */
+    private void initializeNom(int numeroJoueur) {
+        System.out.println("Écrivez le nom du joueur " + numeroJoueur + " : ");
+
+        String nomLu = "";
+        Scanner sc = new Scanner(System.in);
+
+        // Loop to ensure the name is not empty
+        do {
+            nomLu = sc.nextLine().trim(); // trim() removes the blanks at the beginning and the end
+            if (nomLu.isEmpty()) {
+                System.out.println("Le nom ne peut pas être vide. Essayez encore : ");
+            }
+        } while (nomLu.isEmpty());
+
+        this.nom = nomLu;
     }
 
     public void tourDeJeu() {

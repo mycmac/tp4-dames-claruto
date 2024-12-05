@@ -67,6 +67,7 @@ public class Joueur {
             }
         } while (nomLu.isEmpty());
 
+        sc.close(); // Close Scanner
         this.nom = nomLu;
     }
 
@@ -112,39 +113,46 @@ public class Joueur {
             mesPeons = partie.getPeonBlanc();
         }
 
+        // Loop until a valid peon is found
         do {
-            // Read the column
-            System.out.print("Entrez la colonne (A-J) : ");
-            char colonneChar = scanner.next().charAt(0);
+            try {
+                // Read the column
+                System.out.print("Entrez la colonne (A-J) : ");
+                char colonneChar = scanner.next().charAt(0);
 
-            // Check the validity of the column
-            int colonne = convertirPosX(colonneChar);
-            while (colonne == -1) {
-                System.out.print("Colonne invalide ! Entrez à nouveau la colonne (A-J) : ");
-                colonneChar = scanner.next().charAt(0);
-                colonne = convertirPosX(colonneChar);
-            }
-
-            // Read the row
-            System.out.print("Entrez la ligne (0-9) : ");
-            int ligne = scanner.nextInt();
-
-            // Check the validity of the row
-            while (ligne < 0 || ligne > 9) {
-                System.out.print("Ligne invalide ! Entrez à nouveau la ligne (0-9) : ");
-                ligne = scanner.nextInt();
-            }
-
-            // Iterate over all peons in the 'myPeons' list
-            for (Peon peon : mesPeons) {
-                // Check if the peon's position matches the provided column and row
-                if (peon.getX() == colonne && peon.getY() == ligne) {
-                    peonTrouve = peon;  // Store the found peon
-                    break;  // Stop iterating once the peon is found
+                // Check the validity of the column
+                int colonne = convertirPosX(colonneChar);
+                while (colonne == -1) {
+                    System.out.print("Colonne invalide ! Entrez à nouveau la colonne (A-J) : ");
+                    colonneChar = scanner.next().charAt(0);
+                    colonne = convertirPosX(colonneChar);
                 }
-            }
 
+                // Read the row
+                System.out.print("Entrez la ligne (0-9) : ");
+                 int ligne = scanner.nextInt();
+                // Check the validity of the row
+                while (ligne < 0 || ligne > 9) {
+                    System.out.print("Ligne invalide ! Entrez à nouveau la ligne (0-9) : ");
+                    ligne = scanner.nextInt();
+                }
+
+                // Iterate over all peons in the 'myPeons' list
+                for (Peon peon : mesPeons) {
+                    // Check if the peon's position matches the provided column and row
+                    if (peon.getX() == colonne && peon.getY() == ligne) {
+                        peonTrouve = peon;  // Store the found peon
+                        break;  // Stop iterating once the peon is found
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Entrée invalide. Veuillez réessayer.");
+                scanner.nextLine(); // Clear buffer
+            }
         } while (peonTrouve == null);
+        
+        System.out.println("Pion sélectionné : " + peonTrouve);
+
     }
 
     /**

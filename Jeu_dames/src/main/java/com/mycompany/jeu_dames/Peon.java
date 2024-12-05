@@ -9,9 +9,9 @@ package com.mycompany.jeu_dames;
  * @author Clara
  */
 public class Peon {
-    private int x;
-    private int y;
-    private boolean couleur;
+    protected int x;
+    protected int y;
+    protected boolean couleur;
     
     public Peon (int x, int y, boolean couleur) {
         this.x = x;

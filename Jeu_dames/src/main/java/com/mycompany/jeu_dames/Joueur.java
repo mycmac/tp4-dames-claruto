@@ -70,20 +70,30 @@ public class Joueur {
         this.nom = nomLu;
     }
 
-    public void tourDeJeu() {
-
-    }
-
+    /**
+     * Gets the name of the player.
+     *
+     * @return The name of the player.
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Gets the color of the player.
+     *
+     * @return true if the player is black, false if the player is white.
+     */
     public boolean isCouleur() {
         return couleur;
     }
 
+    /**
+     * Gets the game board associated with the player.
+     *
+     * @return The game board associated with the player.
+     */
     public TableauDeJeu getPartie() {
         return partie;
     }
-
 }

@@ -24,7 +24,14 @@ public class Dame extends Peon {
         int deltaY = Math.abs(newY - this.y);
 
         // Vérifie que le mouvement est diagonal et que le chemin est libre
-        return deltaX == deltaY && partie.cheminEstLibre(this.x, this.y, newX, newY);
+        boolean isCheminLibre = false;
+        try{
+            isCheminLibre = partie.cheminEstLibre(this.x, this.y, newX, newY);
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return deltaX == deltaY && isCheminLibre;
     }
 
     /**

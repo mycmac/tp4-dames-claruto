@@ -17,12 +17,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author User
  */
 public class TableauDeJeuTest {
-    
+    protected static TableauDeJeu instance;
     public TableauDeJeuTest() {
     }
     
     @BeforeAll
     public static void setUpClass() {
+        TableauDeJeuTest.instance = new TableauDeJeu();
+        instance.creerTableau();
     }
     
     @AfterAll
@@ -118,17 +120,23 @@ public class TableauDeJeuTest {
      */
     @Test
     public void testCheminEstLibre() {
-        System.out.println("cheminEstLibre");
-        int x = 0;
-        int y = 0;
-        int newX = 0;
-        int newY = 0;
-        TableauDeJeu instance = new TableauDeJeu();
-        boolean expResult = false;
-        boolean result = instance.cheminEstLibre(x, y, newX, newY);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("cheminEstLibre");   
+        try{
+            assertEquals(false, instance.cheminEstLibre(0,0,9,9));
+        } catch(Exception e){
+            System.out.println(e); 
+        }
+        try{
+            assertEquals(false, instance.cheminEstLibre(0,1,3,4));
+        } catch(Exception e){
+            System.out.println(e); 
+        }
+        try{
+            assertEquals(false, instance.cheminEstLibre(0,1,9,9));
+        } catch(Exception e){
+            System.out.println(e); 
+        }
+        
     }
 
     /**

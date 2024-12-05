@@ -122,8 +122,12 @@ public class TableauDeJeu {
     }
     
     public void afficheTableau(){
-        
+        for (int i = 0; i < taille; i++) {
+            for (int j = 0; j < taille; j++) {
+                System.out.println(this.carteInterface[i][j] + "  ");
+        }
+            System.out.println();
+        }
     }
-    
-    
+   
 }
